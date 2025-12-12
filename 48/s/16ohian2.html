@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>16번 오이언 친구를 소개합니다!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <title>16번 오이언 - Gettysburg Address</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'Gaegu', 'Nanum Pen Script', sans-serif;
-            background: linear-gradient(135deg, #e8f5e9, #c8e6c9, #a5d6a7);
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 40%, #ffe082 100%);
             min-height: 100vh;
-            padding: 2rem 1rem;
-            color: #33691e;
+            color: #3e2723;
+            line-height: 1.8;
         }
 
-        /* 돌아가기 버튼 */
         .back-btn {
             position: fixed;
             top: 20px;
@@ -24,148 +23,128 @@
             background: rgba(255,255,255,0.95);
             padding: 12px 24px;
             border-radius: 50px;
-            color: #2e7d32;
+            color: #bf360c;
             font-weight: bold;
             font-size: 1.1rem;
             text-decoration: none;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             z-index: 100;
-            transition: all 0.4s;
+            transition: all 0.3s;
         }
-        .back-btn:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
+        .back-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
 
-        /* 메인 카드 */
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            background: white;
-            border-radius: 40px;
-            overflow: hidden;
-            box-shadow: 0 25px 70px rgba(0,0,0,0.25);
-            animation: slideUp 1s ease-out;
-        }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to   { opacity: 1; transform: translateY(0); }
+            padding: 4rem 2rem;
         }
 
-        /* 상단 이름 */
         header {
-            background: linear-gradient(135deg, #81c784, #66bb6a);
-            color: white;
             text-align: center;
-            padding: 3rem 1rem;
+            margin-bottom: 4rem;
+            padding: 3rem 0;
+            background: linear-gradient(135deg, #5d4037, #8d6e63);
+            color: white;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
         h1 {
+            font-family: 'Gaegu', sans-serif;
             font-size: 4rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            margin-bottom: 0.8rem;
         }
-        .number {
-            font-size: 2rem;
+        .subtitle {
+            font-size: 1.6rem;
             opacity: 0.9;
         }
 
-        /* 본문 레이아웃 */
         .content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            align-items: start;
         }
-        @media (max-width: 860px) {
+        @media (max-width: 900px) {
             .content { grid-template-columns: 1fr; }
         }
 
-        /* 왼쪽: 자기소개 문구 */
-        .intro {
-            padding: 3rem 2.5rem;
-            background: #f1f8e9;
-            font-size: 1.6rem;
+        .text-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            font-size: 1.35rem;
             line-height: 2.1;
-            color: #33691e;
-        }
-        .intro p {
-            margin-bottom: 1.2rem;
             text-align: justify;
         }
 
-        /* 오른쪽: 사진 */
-        .photo {
-            padding: 2rem;
-            background: #e8f5e9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .photo-section {
+            text-align: center;
         }
-        .photo img {
+        .photo-section img {
             max-width: 100%;
-            max-height: 550px;
-            border-radius: 30px;
+            border-radius: 25px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.3);
             transition: transform 0.5s;
         }
-        .photo img:hover {
-            transform: scale(1.05);
+        .photo-section img:hover {
+            transform: scale(1.03);
         }
-
-        /* 하단 한마디 */
-        .message {
-            background: linear-gradient(135deg, #ffcc80, #ffb74b567);
-            color: white;
-            text-align: center;
-            padding: 3rem 2rem;
+        .caption {
+            margin-top: 1.5rem;
+            font-family: 'Gaegu', sans-serif;
             font-size: 1.8rem;
-            line-height: 1.9;
-            text-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            color: #bf360c;
+            font-weight: bold;
         }
 
         footer {
             text-align: center;
+            margin-top: 4rem;
             padding: 2rem;
-            color: #558b2f;
-            font-size: 1.2rem;
-            font-style: italic;
+            font-family: 'Gaegu', sans-serif;
+            font-size: 1.3rem;
+            color: #6d4c41;
         }
     </style>
 </head>
 <body>
 
-    <a href="../aboutus.html" class="back-btn">← 우리 학급 안내로 가기</a>
+    <a href="../aboutus.html" class="back-btn">우리 학급 안내로 돌아가기</a>
 
     <div class="container">
         <header>
             <h1>오이언</h1>
-            <div class="number">No.16 행운반 클로버</div>
+            <div class="subtitle">No.16 행운반 클로버</div>
         </header>
 
         <div class="content">
-            <!-- 왼쪽: 자기소개 -->
-            <div class="intro">
-                <p>안녕하세요! 저는 16번 오이언이에요</p>
-                <p>제가 제일 좋아하는 과목은 체육시간이에요!</p>
-                <p>우리 반 친구들이랑 같이 뛰노는 게 너무 재밌어요!</p>
-                <p>꿈은 유튜버가 되는 거예요~ 구독과 좋아요 부탁드려요!</p>
-                <p>올해는 클로버반에서 제일 밝게 웃는 아이가 목표예요!</p>
+            <!-- 게티스버그 연설 본문 -->
+            <div class="text-section">
+                <p><strong>Four score and seven years ago</strong> our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.</p><br>
+
+                <p>Now we are engaged in a great civil war, testing whether that nation, or any nation so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this.</p><br>
+
+                <p>But, in a larger sense, we can not dedicate—we can not consecrate—we can not hallow—this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember what we say here, but it can never forget what they did here.</p><br>
+
+                <p>It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us—that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion—that we here highly resolve that these dead shall not have died in vain—that this nation, under God, shall have a new birth of freedom—and that government of the people, by the people, for the people, shall not perish from the earth.</p><br>
+
+                <p style="text-align:right; font-style:italic; margin-top:2rem;">
+                    — Abraham Lincoln<br>
+                    November 19, 1863
+                </p>
             </div>
 
-            <!-- 오른쪽: 사진 -->
-            <div class="photo">
-                <img src="simg/16gettysburg.jpg" alt="오이언 친구 사진">
+            <!-- 사진 -->
+            <div class="photo-section">
+                <img src="simg/16gettysburg.jpg" alt="오이언 - Gettysburg">
+                <div class="caption">오이언이 외우는 게티스버그 연설</div>
             </div>
-        </div>
-
-        <!-- 하단 한마디 -->
-        <div class="message">
-            “웃는 얼굴이 제일 예쁜 얼굴이에요!”<br>
-            — 오이언 —
         </div>
     </div>
 
     <footer>
-        행운반 클로버 2025학년 2025 • Made with ♥ by Ian
+        행운반 클로버 2025학년도 • 16번 오이언
     </footer>
 
 </body>
