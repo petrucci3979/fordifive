@@ -3,48 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>친구소개</title>
+    <title>오이언 친구를 소개합니다!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
     <style>
-      /* 이미지 크기 조정 */
-      img {
-        width: 100%;           /* 화면 너비에 맞추기 */
-        height: 100vh;         /* 화면 높이에 맞추기 */
-        object-fit: cover;     /* 이미지 비율을 유지하면서 화면을 꽉 채우기 */
-        cursor: pointer;
-      }
-    </style>
-    
-    </head>
-    <body>
-    <br>
-    <p><a href="../aboutus.html">우리 학급 안내 페이지로 돌아가기</a>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-    <center>
+        body {
+            font-family: 'Gaegu', 'Nanum Pen Script', sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #80deea, #4dd0e1);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
 
-  <!-- 클릭할 이미지 -->
-  <img id="image" src="simg/16.jpg" alt="클릭전이미지">
+        /* 상단 돌아가기 버튼 */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.9);
+            padding: 12px 20px;
+            border-radius: 30px;
+            color: #006064;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-decoration: none;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            z-index: 100;
+            transition: all 0.3s;
+        }
+        .back-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            background: white;
+        }
 
-  <script>
-    const img = document.getElementById("image");
+        /* 메인 영역 */
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
 
-    // 클릭할 때 이미지를 변경
-    img.addEventListener("mousedown", function() {
-      img.src = "simg/16click.jpg";  // 이미지 변경
-    });
+        /* 제목 */
+        h1 {
+            font-size: 3.5rem;
+            color: white;
+            text-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            margin-bottom: 2rem;
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
 
-    // 클릭을 떼면 페이지 이동
-    img.addEventListener("mouseup", function() {
-      // 페이지 이동
-      window.location.href = "16ohian2.html";  // 이동할 페이지 URL
-    });
+        /* 사진 카드 */
+        .photo-card {
+            width: 90%;
+            max-width: 500px;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+            cursor: pointer;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
 
-    // 마우스가 이미지 밖으로 나가면 클릭 취소
-    img.addEventListener("mouseleave", function() {
-      // 마우스가 이미지 밖으로 나가면 이미지 원래대로 복귀
-      img.src = "simg/16.jpg";
-    });
-  </script>
+        .photo-card:hover {
+            transform: scale(1.08) translateY(-20px);
+            box-shadow: 0 40px 90px rgba(0,0,0,0.5);
+        }
 
-</center>
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.4s ease;
+        }
+
+        /* 클릭했을 때 효과 */
+        .photo-card:active {
+            transform: scale(0.95);
+        }
+
+        /* 반짝이는 힌트 텍스트 */
+        .hint {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 1.4rem;
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+            backdrop-filter: blur(5px);
+        }
+
+        .photo-card:hover .hint {
+            opacity: 1;
+        }
+
+        /* 클릭하면 이미지 바뀌는 효과 */
+        #mainImg { transition: opacity 0.5s ease; }
+
+        /* 하단 꾸미기 */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: white;
+            font-size: 1.1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <a href="../aboutus.html" class="back-btn">← 우리 학급 안내로 가기</a>
+
+    <div class="container">
+        <h1>오이언 친구예요!</h1>
+
+        <div class="photo-card" id="photoCard">
+            <img src="simg/16.jpg" alt="오이언" id="mainImg">
+            <div class="hint">꾹 누르고 있으면 깜짝 변신!</div>
+        </div>
+    </div>
+
+    <footer>행운반 클로버 • 16번 오이언</footer>
+
+    <script>
+        const card = document.getElementById("photoCard");
+        const img = document.getElementById("mainImg");
+
+        // 마우스 누르고 있으면 사진 변경
+        card.addEventListener("mousedown", () => {
+            img.style.opacity = "0";
+            setTimeout(() => {
+                img.src = "simg/16click.jpg";
+                img.style.opacity = "1";
+            }, 300);
+        });
+
+        // 떼면 다음 페이지로 이동
+        card.addEventListener("mouseup", () => {
+            window.location.href = "16ohian2.html";
+        });
+
+        // 터치 디바이스 (모바일) 대응
+        card.addEventListener("touchstart", (e) => {
+            e.preventDefault();
+            img.style.opacity = "0";
+            setTimeout(() => {
+                img.src = "simg/16click.jpg";
+                img.style.opacity = "1";
+            }, 300);
+        });
+
+        card.addEventListener("touchend", (e) => {
+            e.preventDefault();
+            window.location.href = "16ohian2.html";
+        });
+
+        // 마우스가 벗어나면 원래 사진으로
+        card.addEventListener("mouseleave", () => {
+            img.style.opacity = "0";
+            setTimeout(() => {
+                img.src = "simg/16.jpg";
+                img.style.opacity = "1";
+            }, 300);
+        });
+    </script>
+
 </body>
 </html>
