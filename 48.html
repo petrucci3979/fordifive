@@ -4,37 +4,178 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>나성초 4학년 8반 홈페이지</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Malgun Gothic', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            min-height: 100vh;
+        }
+
+        /* 헤더 */
+        header {
+            background: rgba(255, 255, 255, 0.93);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: #2c3e50;
+        }
+
+        .home-btn {
+            padding: 0.6rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .home-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* 메인 컨텐츠 */
+        .container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+            animation: fadeInUp 0.6s ease;
+            text-align: center;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #6dd5fa 0%, #2980b9 100%);
+            border-radius: 2px;
+        }
+
+        .class-image {
+            max-width: 300px;
+            width: 100%;
+            border-radius: 15px;
+            margin: 2rem auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .button-box {
+            margin-top: 2rem;
+        }
+
+        .menu-btn {
+            display: inline-block;
+            margin: 1rem;
+            padding: 0.8rem 1.8rem;
+            background: #6dd5fa;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .menu-btn:hover {
+            transform: translateY(-3px);
+            background: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            .content-card {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .menu-btn {
+                width: 80%;
+                margin: 0.5rem auto;
+            }
+        }
+
+    </style>
 </head>
+
 <body>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <header>
+        <nav>
+            <a class="logo" href="#">🍀 나성초 4학년 8반</a>
+            <a href="index.html" class="home-btn">홈으로</a>
+        </nav>
+    </header>
 
-    <center>
-        <h1>나성초 4학년 8반 홈페이지 </h1>
-        
-    </center>
-    <br>
-    <center>
-        <img src = "48/img/clover.jpg">
-    </center>
-    <br>
-    <br>
+    <div class="container">
+        <div class="content-card">
 
-    
+            <h1>나성초 4학년 8반 홈페이지</h1>
 
-    <center>
-        <a href="48/notice202504.html">공지사항</a>
-        </center>
-        <br>
-    <center>
-        <a href="48/aboutus.html">우리 학급 안내</a>
-    </center>
-        <br>
+            <img src="48/img/clover.jpg" class="class-image" alt="클로버">
+
+            <div class="button-box">
+                <a href="48/notice202504.html" class="menu-btn">📢 공지사항</a>
+                <a href="48/aboutus.html" class="menu-btn">📘 우리 학급 안내</a>
+            </div>
+
+        </div>
+    </div>
 
 </body>
 </html>

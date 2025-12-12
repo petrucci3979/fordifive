@@ -3,136 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>우리 학급 안내</title>
-    
+    <title>우리 학급 안내 | 행운반 클로버</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Nanum+Pen+Script&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Gaegu', 'Nanum Pen Script', sans-serif;
+            background: linear-gradient(135deg, #fff9c4 0%, #f7d759 30%, #ffd43b 70%, #e6be1e 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* 상단 네비게이션 */
+        .top-bar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-bar a {
+            color: #d4a017;
+            font-size: 1.1rem;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .top-bar a:hover {
+            color: #b8860b;
+        }
+
+        /* 메인 컨테이너 */
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        /* 제목 영역 */
+        .title-area {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #b8860b;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.2);
+        }
+
+        .class-info {
+            font-size: 2rem;
+            color: #8B4513;
+            margin: 1rem 0;
+            font-weight: bold;
+        }
+
+        .teacher {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: rgba(255,255,255,0.8);
+            border-radius: 30px;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .teacher a {
+            color: #d4a017;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .teacher a:hover {
+            color: #b8860b;
+            text-decoration: underline;
+        }
+
+        /* 학생 명단 그리드 */
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 4rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .student-card {
+            background: linear-gradient(135deg, #fffbe6 0%, #fff8dc 100%);
+            padding: 1.5rem 1rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+            border: 3px solid transparent;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #8B4513;
+        }
+
+        .student-card:hover {
+            transform: translateY(-12px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(212, 160, 23, 0.4);
+            border: 3px solid #ffd700;
+            background: linear-gradient(135deg, #fffbe6 0%, #fff1a8 100%);
+        }
+
+        .student-card .number {
+            display: block;
+            font-size: 1.8rem;
+            color: #d4a017;
+            margin-bottom: 0.5rem;
+        }
+
+        .student-card a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .student-card a:hover {
+            color: #b8860b;
+        }
+
+        /* 모바일 최적화 */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.8rem; }
+            .class-info { font-size: 1.6rem; }
+            .students-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+                padding: 1.5rem;
+            }
+            .student-card {
+                padding: 1rem 0.5rem;
+                font-size: 1.1rem;
+            }
+            .student-card .number {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .students-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            h1 { font-size: 2.4rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <br>
-    
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../48.html">초기 화면으로 가기</a></p>
+    <div class="top-bar">
+        <a href="../48.html">초기 화면으로 가기</a>
+    </div>
 
-    <center>
-        <h1>우리 학급 안내 </h1>
-        <br>
-        <h3>반 이름: 행운반</h3>
-        <h3>반 애칭: 클로버</h3>
-        <h3>담임선생님 성함: <center>
-            <a href="s/00teacher.html">이*민 선생님 </a>
-            </center> </h3>
-    </center>
+    <div class="container">
+        <div class="title-area">
+            <h1>우리 학급 안내</h1>
+            <div class="class-info">행운반</div>
+            <div class="class-info">클로버</div>
+            
+            <div class="teacher">
+                담임선생님 : <a href="s/00teacher.html">이*민 선생님</a>
+            </div>
+        </div>
 
-    <style>
-        body {
-            height: 100vh;
-            margin: 0;
-            background-image: linear-gradient(to right, #f7d759, #e6be1e); /* 왼쪽에서 오른쪽으로 그라데이션 */ 
-        }
-    </style>
+        <div class="students-grid">
+            <div class="student-card"><span class="number">1</span><a href="s/01kangminseung.html">강*승</a></div>
+            <div class="student-card"><span class="number">2</span><a href="s/02kangyuan.html">강*안</a></div>
+            <div class="student-card"><span class="number">3</span><a href="s/03kwondoyeon.html">권*연</a></div>
+            <div class="student-card"><span class="number">4</span><a href="s/04gilyul.html">길*율</a></div>
+            <div class="student-card"><span class="number">5</span><a href="s/05kimgeonwoo.html">김*우</a></div>
+            
+            <div class="student-card"><span class="number">6</span><a href="s/06kimnayoon.html">김*윤</a></div>
+            <div class="student-card"><span class="number">7</span><a href="s/07kimdoyoon.html">김*윤</a></div>
+            <div class="student-card"><span class="number">8</span><a href="s/08kimminseo.html">김*서</a></div>
+            <div class="student-card"><span class="number">9</span><a href="s/09kimyujin.html">김*진</a></div>
+            <div class="student-card"><span class="number">10</span><a href="s/10kimjuan.html">김*안</a></div>
+            
+            <div class="student-card"><span class="number">11</span><a href="s/11parkseoha.html">박*하</a></div>
+            <div class="student-card"><span class="number">12</span><a href="s/12parksoyoon.html">박*윤</a></div>
+            <div class="student-card"><span class="number">13</span><a href="s/13parksihyun.html">박*현</a></div>
+            <div class="student-card"><span class="number">14</span><a href="s/14baekseoyeon.html">백*연</a></div>
+            <div class="student-card"><span class="number">15</span><a href="s/15ohdayool.html">오*율</a></div>
+            
+            <div class="student-card"><span class="number">16</span><a href="s/16ohian.html">오*언</a></div>
+            <div class="student-card"><span class="number">17</span><a href="s/17ohhayool.html">오*율</a></div>
+            <div class="student-card"><span class="number">18</span><a href="s/18leedohee.html">이*희</a></div>
+            <div class="student-card"><span class="number">19</span><a href="s/19leeseonwoong.html">이*웅</a></div>
+            <div class="student-card"><span class="number">20</span><a href="s/20limyebin.html">임*빈</a></div>
+            
+            <div class="student-card"><span class="number">21</span><a href="s/21janghajoon.html">장*준</a></div>
+            <div class="student-card"><span class="number">22</span><a href="s/22jeongyeju.html">정*주</a></div>
+            <div class="student-card"><span class="number">23</span><a href="s/23jeongjiwan.html">정*완</a></div>
+            <div class="student-card"><span class="number">24</span><a href="s/24chojoonseo.html">조*서</a></div>
+            <div class="student-card"><span class="number">25</span><a href="s/25choijoowon.html">최*원</a></div>
+        </div>
+    </div>
 
-  <style>
-    table {
-      width: 800px;
-      height: 400px;
-      border-collapse: collapse; /* 경계선 합치기 */
-    }
-    td {
-      border: 1px solid black;
-      padding: 20px; /* 셀 내 여백 */
-    }
-  </style>
-
-<body>
-    <center>
-  <table>
-    <tr>
-     
-
-            <td>1<center>
-                <a href="s/01kangminseung.html">강*승 </a>
-                </center> </h3></td>
-            <td>2<center>
-                <a href="s/02kangyuan.html">강*안 </a>
-                </center> </h3></td>
-            <td>3<center>
-                <a href="s/03kwondoyeon.html">권*연 </a>
-                </center> </h3></td>
-            <td>4<center>
-                <a href="s/04gilyul.html">길* </a>
-                </center> </h3></td>
-            <td>5<center>
-                <a href="s/05kimgeonwoo.html">김*우 </a>
-                </center> </h3></td>
-        </tr>
-        <tr>
-            <td>6<center>
-                <a href="s/06kimnayoon.html">김*윤 </a>
-                </center> </h3></td>
-            <td>7<center>
-                <a href="s/07kimdoyoon.html">김*윤 </a>
-                </center> </h3></td>
-            <td>8<center>
-                <a href="s/08kimminseo.html">김*서 </a>
-                </center> </h3></td>
-            <td>9<center>
-                <a href="s/09kimyujin.html">김*진 </a>
-                </center> </h3></td>
-            <td>10<center>
-                <a href="s/10kimjuan.html">김*안 </a>
-                </center> </h3></td>
-        </tr>
-        <tr>
-            <td>11<center>
-                <a href="s/11parkseoha.html">박*하 </a>
-                </center> </h3></td>
-            <td>12<center>
-                <a href="s/12parksoyoon.html">박*윤 </a>
-                </center> </h3></td>
-            <td>13<center>
-                <a href="s/13parksihyun.html">박*현 </a>
-                </center> </h3></td>
-            <td>14<center>
-                <a href="s/14baekseoyeon.html">백*연 </a>
-                </center> </h3></td>
-            <td>15<center>
-                <a href="s/15ohdayool.html">오*율 </a>
-                </center> </h3></td>
-        </tr>
-        <tr>
-            <td>16<center>
-                <a href="s/16ohian.html">오*언 </a>
-                </center> </h3></td>
-            <td>17<center>
-                <a href="s/17ohhayool.html">오*율 </a>
-                </center> </h3></td>
-            <td>18<center>
-                <a href="s/18leedohee.html">이*희 </a>
-                </center> </h3></td>
-            <td>19<center>
-                <a href="s/19leeseonwoong.html">이*웅 </a>
-                </center> </h3></td>
-            <td>20<center>
-                <a href="s/20limyebin.html">임*빈 </a>
-                </center> </h3></td>
-        </tr>
-        <tr>
-            <td>21<center>
-                <a href="s/21janghajoon.html">장*준 </a>
-                </center> </h3></td>
-            <td>22<center>
-                <a href="s/22jeongyeju.html">정*주 </a>
-                </center> </h3></td>
-            <td>23<center>
-                <a href="s/23jeongjiwan.html">정*완 </a>
-                </center> </h3></td>
-            <td>24<center>
-                <a href="s/24chojoonseo.html">조*서 </a>
-                </center> </h3></td>
-            <td>25<center>
-                <a href="s/25choijoowon.html">최*원 </a>
-                </center> </h3></td>
-        </tr>
-    </table>
-</center>
 </body>
 </html>

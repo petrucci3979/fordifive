@@ -3,26 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <center>
     <title>책 소개</title>
-</head>
-<body>
     <style>
-        body {
-            height: 100vh;
+        * {
             margin: 0;
-            background-image: linear-gradient(to right, #1e201f, #101110);
-            color: white; /* 글씨를 흰색으로 설정 */
-        } 
-    </style>    
-    <h1>책 소개 </h1>
-    <p>저희 회사는 '안내문'에서 채팅으로 책을 예약 하시고 돈을 주시면 전자책을 보내드립니다.
-    <br>('안내문' 참고) (아직은 책이 없습니다.)
-       <br></p>
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-</body>
-</html>
-</center>
+        body {
+            font-family: 'Segoe UI', 'Malgun Gothic', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #1e201f 0%, #101110 100%);
+            min-height: 100vh;
+        }
+
+        /* 헤더 */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+            padding: 1.5rem 2rem;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #101110;
+            text-decoration: none;
+        }
+
+        .home-btn {
+            padding: 0.6rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .home-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* 메인 컨텐츠 */
+        .container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 2;
+            margin: 2rem 0;
+            text-align: justify;
+        }
+
+        .info-section {
+            background: linear-gradient(135deg, #667eea10 0%, #764ba210 100%);
+            border-left: 4px solid #667eea;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .info-item {
+            display: flex;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-label {
+            font-weight: 700;
+            color: #667eea;
+            min-width: 120px;
+            font-size: 1.1rem;
+        }
+
+        .info-value {
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 3rem;
+            font-style: italic;
+            color: #666;
+        }
+
+        .signature strong {
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .content-card {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .info-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .info-label {
+                margin-bottom: 0.3rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
 <body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">📘 책 소개</a>
+            <a href="index.html" class="home-btn">홈으로 가기</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="content-card">
+
+            <h1>책 소개</h1>
+
+            <div class="description">
+                저희 회사는 ‘안내문’ 채팅을 통해 책을 예약하시고
+                결제하시면 <strong>전자책(E-book)</strong>을 보내드리는 서비스를 운영하고 있습니다.
+                <br><br>
+                현재는 준비 중이지만, 곧 다양한 분야의 전자책을 선보일 예정입니다.
+                독자분들이 더 쉽고 빠르게 지식을 접하도록 돕는 것이 우리의 목표입니다.
+            </div>
+
+            <div class="info-section">
+                <div class="info-item">
+                    <span class="info-label">📌 서비스 현황</span>
+                    <span class="info-value">전자책 준비 중</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">📚 제공 방식</span>
+                    <span class="info-value">채팅 예약 → 결제 → 전자책 발송</span>
+                </div>
+            </div>
+
+            <div class="signature">
+                감사합니다.<br>
+                <strong>- 포디파이브 -</strong>
+            </div>
+
+        </div>
+    </div>
+
 </body>
 </html>

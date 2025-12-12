@@ -3,30 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <center>
     <title>프로그램 소개</title>
-</head>
-<body>
-    <h1>프로그램 소개</h1>
-    <p>(아직은 프로그램이 없습니다.)</p>
-</body>
-</html>
-</center>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>선형 그라데이션</title>
+
     <style>
-        body {
-            height: 100vh;
+        * {
             margin: 0;
-            background-image: linear-gradient(to right, #ff7e5f, #feb47b); /* 왼쪽에서 오른쪽으로 그라데이션 */
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Malgun Gothic', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            min-height: 100vh;
+        }
+
+        /* 헤더 */
+        header {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+            padding: 1.5rem 2rem;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .home-btn {
+            padding: 0.6rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .home-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* 메인 컨텐츠 */
+        .container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            border-radius: 2px;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 2;
+            margin: 2rem 0;
+            text-align: justify;
+        }
+
+        .info-section {
+            background: linear-gradient(135deg, #ff7e5f10 0%, #feb47b10 100%);
+            border-left: 4px solid #ff7e5f;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .info-item {
+            display: flex;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+
+        .info-label {
+            font-weight: 700;
+            color: #ff7e5f;
+            min-width: 120px;
+            font-size: 1.1rem;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 3rem;
+            font-style: italic;
+            color: #666;
+        }
+
+        .signature strong {
+            color: #ff7e5f;
+            font-weight: 700;
+        }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .content-card {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .info-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .info-label {
+                margin-bottom: 0.3rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
-<body>
-</body>
 
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">🎈 포디파이브 이벤트</a>
+            <a href="index.html" class="home-btn">홈으로 돌아가기</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="content-card">
+
+            <h1>프로그램 소개</h1>
+
+            <div class="description">
+                포디파이브에서는 앞으로 다양한 이벤트와 프로그램을 선보일 예정입니다.
+                독자분들과 소통하며 재미와 유익함을 더하는 활동을 준비하고 있으니 많은 기대 부탁드립니다.
+            </div>
+
+            <div class="info-section">
+                <div class="info-item">
+                    <span class="info-label">📌 현재 상태</span>
+                    <span class="info-value">진행 중인 프로그램 없음</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">✨ 예정된 내용</span>
+                    <span class="info-value">독서 이벤트, 도전 미션, 보상형 활동 기획 중</span>
+                </div>
+            </div>
+
+            <div class="signature">
+                감사합니다.<br>
+                <strong>- 포디파이브 -</strong>
+            </div>
+
+        </div>
+    </div>
+
+</body>
 </html>

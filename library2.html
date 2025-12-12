@@ -1,80 +1,226 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>자료실</title>
-  <style>
-    body {
-      height: 100vh;
-      margin: 0;
-      background-image: linear-gradient(to right, rgba(248, 248, 247, 0), rgb(17, 17, 16));
-      color: white;
-      font-family: sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 20px;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자료실</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+        body {
+            font-family: 'Segoe UI', 'Malgun Gothic', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #f8f8f7 0%, #111110 100%);
+            min-height: 100vh;
+        }
 
-    .video-container {
-      position: relative;
-      width: 25vw; 
-      padding-top: 44.44%; 
-      margin-left: 0;
-      margin-right: auto;
-    }
+        /* 헤더 */
+        header {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-    .video-container video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-  </style>
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #111110;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .home-btn {
+            padding: 0.7rem 1.8rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        /* 메인 컨텐츠 */
+        .container {
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 24px;
+            padding: 3.5rem;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.8s ease-out;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.6rem;
+            color: #1a1a1a;
+            margin-bottom: 1.2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 3px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.15rem;
+            color: #555;
+            margin-bottom: 3rem;
+            font-weight: 500;
+        }
+
+        /* 비디오 컨테이너 */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 */
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+            margin: 2rem 0;
+            background: #000;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            object-fit: cover;
+        }
+
+        .video-label {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #777;
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+                margin: 2rem auto;
+            }
+            .content-card {
+                padding: 2rem 1.5rem;
+                border-radius: 18px;
+            }
+            h1 {
+                font-size: 2.1rem;
+            }
+            .home-btn {
+                padding: 0.6rem 1.4rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>자료실</h1>
 
-  <div class="video-container">
-    <video controls>
-      <source src="mp4/fordistudio.mp4" type="video/mp4">
-      브라우저가 동영상을 지원하지 않습니다.
-    </video>
-  </div>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">자료실</a>
+            <a href="index.html" class="home-btn">홈으로 돌아가기</a>
+        </nav>
+    </header>
 
-  <!-- Firebase SDK v8 -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <div class="container">
+        <div class="content-card">
+            <h1>자료실</h1>
+            <p class="subtitle">포디파이브 회원 전용 고화질 콘텐츠 공간입니다.<br>로그인 후 감상해 주세요</p>
 
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDhXxZZvjPQslJM3O1VBAT0rcRT4iRb8uY",
-      authDomain: "ffff-4f188.firebaseapp.com",
-      projectId: "ffff-4f188",
-      storageBucket: "ffff-4f188.firebasestorage.app",
-      messagingSenderId: "194297475368",
-      appId: "1:194297475368:web:84d0c6c50af6e3dbf1a01d",
-      measurementId: "G-RV3BY75WM0"
-    };
+            <div class="video-container">
+                <video controls preload="metadata" poster="mp4/thumbnail.jpg">
+                    <source src="mp4/fordistudio.mp4" type="video/mp4">
+                    이 브라우저는 동영상 재생을 지원하지 않습니다.
+                </video>
+            </div>
 
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
+            <p class="video-label">미리보기 영상 • 포디스튜디오 작업 영상</p>
+        </div>
+    </div>
 
-    // 로그인 상태 확인
-    auth.onAuthStateChanged((user) => {
-      if (!user) {
-        alert("로그인이 필요합니다.");
-        window.location.href = "login.html"; // 로그인 안되어 있으면 이동
-      }
-    });
-  </script>
+    <!-- Firebase SDK v8 (기존 유지) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDhXxZZvjPQslJM3O1VBAT0rcRT4iRb8uY",
+            authDomain: "ffff-4f188.firebaseapp.com",
+            projectId: "ffff-4f188",
+            storageBucket: "ffff-4f188.firebasestorage.app",
+            messagingSenderId: "194297475368",
+            appId: "1:194297475368:web:84d0c6c50af6e3dbf1a01d",
+            measurementId: "G-RV3BY75WM0"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // 로그인 상태 확인
+        auth.onAuthStateChanged(user => {
+            if (!user) {
+                alert("로그인이 필요합니다.");
+                window.location.href = "login.html";
+            }
+        });
+    </script>
 </body>
 </html>
