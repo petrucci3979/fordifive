@@ -3,51 +3,373 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>포디파이브 회사 홈페이지</title>
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <title>포디파이브 - 독서와 성장의 파트너</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Malgun Gothic', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* 헤더 */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: #3498db;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3498db;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .login-btn {
+            padding: 0.6rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        /* 히어로 섹션 */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -250px;
+            right: -250px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            bottom: -150px;
+            left: -150px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-logo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            background: white;
+            border-radius: 50%;
+            padding: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 카드 섹션 */
+        .cards-section {
+            max-width: 1200px;
+            margin: -80px auto 4rem;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* 외부 링크 섹션 */
+        .external-link {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .external-link h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .external-link p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .band-btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .band-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        /* 푸터 */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .cards-section {
+                margin-top: -40px;
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <nav>
+            <a href="#" class="logo">포디파이브</a>
+            <ul class="nav-links">
+                <li><a href="intro_company.html">회사 소개</a></li>
+                <li><a href="intro_book.html">책 소개</a></li>
+                <li><a href="event_fordfive.html">프로그램</a></li>
+            </ul>
+            <a href="login.html" class="login-btn">로그인</a>
+        </nav>
+    </header>
 
-    <right>
-    <a href="login.html">로그인하기</a> 
-    </right>  
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-logo">
+                <img src="img/logo.jpg" alt="포디파이브 로고">
+            </div>
+            <h1>포디파이브</h1>
+            <p>독서와 성장을 통해 더 나은 내일을 만들어갑니다</p>
+        </div>
+    </section>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <section class="cards-section">
+        <a href="intro_company.html" class="card">
+            <div class="card-icon">🏢</div>
+            <h3>회사 소개</h3>
+            <p>포디파이브의 비전과 미션, 그리고 우리가 추구하는 가치를 만나보세요.</p>
+        </a>
 
-    <center>
-        <h1> 포디파이브 회사 홈페이지</h1>
-        <br>
-    </center>
-    <br>
-    <center>
-        <a href="library.html"><img src="img/logo.jpg"></a>
-    </center>
-    <br>
-    <br>
-    
-    <center>
-        <a href="intro_company.html">회사 소개</a>
-        </center>
-        <br>
-        <center>
-        <a href="intro_book.html">책 소개</a>
-        </center>
-        <br>
-        <center>
-        <a href="event_fordfive.html">프로그램 소개</a>
-        </center>
-        <br>
-        <center>
-        <a href="https://band.us/band/97849646">포디파이브 안내문</a> 
-        </center>  
-        <br>
-    <center>
+        <a href="intro_book.html" class="card">
+            <div class="card-icon">📚</div>
+            <h3>책 소개</h3>
+            <p>엄선된 도서들과 함께 지식의 세계로 떠나는 여정을 시작하세요.</p>
+        </a>
 
+        <a href="event_fordfive.html" class="card">
+            <div class="card-icon">🎯</div>
+            <h3>프로그램 소개</h3>
+            <p>체계적인 독서 프로그램으로 성장의 기회를 잡아보세요.</p>
+        </a>
 
+        <a href="library.html" class="card">
+            <div class="card-icon">📖</div>
+            <h3>도서관</h3>
+            <p>다양한 장르의 책들을 탐색하고 원하는 책을 찾아보세요.</p>
+        </a>
+    </section>
+
+    <section class="external-link">
+        <h2>포디파이브 커뮤니티</h2>
+        <p>밴드에서 더 많은 정보와 소식을 만나보세요</p>
+        <a href="https://band.us/band/97849646" target="_blank" class="band-btn">
+            밴드 바로가기 →
+        </a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 포디파이브. All rights reserved.</p>
+    </footer>
 </body>
 </html>
