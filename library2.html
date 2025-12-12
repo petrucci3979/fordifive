@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자료실</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      background-image: linear-gradient(to right, rgba(248, 248, 247, 0), rgb(17, 17, 16));
+      color: white;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .video-container {
+      position: relative;
+      width: 25vw; 
+      padding-top: 44.44%; 
+      margin-left: 0;
+      margin-right: auto;
+    }
+
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>자료실</h1>
+
+  <div class="video-container">
+    <video controls>
+      <source src="mp4/fordistudio.mp4" type="video/mp4">
+      브라우저가 동영상을 지원하지 않습니다.
+    </video>
+  </div>
+
+  <!-- Firebase SDK v8 -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDhXxZZvjPQslJM3O1VBAT0rcRT4iRb8uY",
+      authDomain: "ffff-4f188.firebaseapp.com",
+      projectId: "ffff-4f188",
+      storageBucket: "ffff-4f188.firebasestorage.app",
+      messagingSenderId: "194297475368",
+      appId: "1:194297475368:web:84d0c6c50af6e3dbf1a01d",
+      measurementId: "G-RV3BY75WM0"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // 로그인 상태 확인
+    auth.onAuthStateChanged((user) => {
+      if (!user) {
+        alert("로그인이 필요합니다.");
+        window.location.href = "login.html"; // 로그인 안되어 있으면 이동
+      }
+    });
+  </script>
+</body>
+</html>
