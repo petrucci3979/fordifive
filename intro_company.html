@@ -3,65 +3,308 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <center>
-    <title>포디파이브 회사 소개 </title>
-
+    <title>포디파이브 회사 소개</title>
     <style>
-        pre {
-            line-height: 2; /* 줄간격을 1.8배로 설정 */
-        }
-    </style>
-
-</head>
-<body>
-    <h1>포디파이브 회사 소개</h1>
-   
-   <pre>
-    <center>
-    <img src="img/plogo.jpg"
-    
-  <pre>    
-    창립일:2025.2.22.
-    창립자:오이, 서준
-   저희 회사는 책과 관련된 여러 서비스 및 이벤트를 운영하는 회사입니다.
-     저희 회사에 많은 관심 부탁드립니다.  (사람1):'근데 질문이 있어요. 왜 이름이 45이에요? 
-     (답):45는 공동 창립자인 오이와 서준의 생일을 따서 만들었답니다.그리고 영어로 
-     'fordi five' 인 것은 그냥 우리 회사의 상표입니다. 감사합니다. -홈페이지 제작자 오이-
-     <!DOCTYPE html>
-     <html lang="ko">
-     <head>
-       <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>글자 색 변경</title>
-     </head>
-     <body style="color: white; background-color: black;">
-     </body>
-     </html>
-       </center>
-  <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>하늘색 배경</title>
-    <style>
-        body {
-            /* 그라데이션 배경 설정 */
-            background: linear-gradient(to right, #074dce, #24c4f9);
-            /* 화면이 꽉 차게 하기 */
-            height: 100vh;
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Malgun Gothic', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* 헤더 */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem 2rem;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .home-btn {
+            padding: 0.6rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .home-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* 메인 컨텐츠 */
+        .container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        .logo-section {
+            text-align: center;
+            margin: 2rem 0 3rem;
+        }
+
+        .logo-section img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-section {
+            background: linear-gradient(135deg, #667eea10 0%, #764ba210 100%);
+            border-left: 4px solid #667eea;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .info-item {
+            display: flex;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-label {
+            font-weight: 700;
+            color: #667eea;
+            min-width: 120px;
+            font-size: 1.1rem;
+        }
+
+        .info-value {
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 2;
+            margin: 2rem 0;
+            text-align: justify;
+        }
+
+        .faq-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 3rem;
+        }
+
+        .faq-section h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .faq-answer {
+            color: #555;
+            line-height: 1.8;
+            padding-left: 1.8rem;
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 3rem;
+            font-style: italic;
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .signature strong {
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .content-card {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .info-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .info-label {
+                margin-bottom: 0.3rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* 아이콘 스타일 */
+        .icon {
+            display: inline-block;
+            font-size: 1.3rem;
         }
     </style>
 </head>
 <body>
-    <br>
-    
-    
+    <header>
+        <nav>
+            <a href="index.html" class="logo">📚 포디파이브</a>
+            <a href="index.html" class="home-btn">홈으로 돌아가기</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="content-card">
+            <h1>포디파이브 회사 소개</h1>
+
+            <div class="logo-section">
+                <img src="img/plogo.jpg" alt="포디파이브 로고">
+            </div>
+
+            <div class="info-section">
+                <div class="info-item">
+                    <span class="info-label">🗓️ 창립일</span>
+                    <span class="info-value">2025년 2월 22일</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">👥 창립자</span>
+                    <span class="info-value">오이, 서준</span>
+                </div>
+            </div>
+
+            <div class="description">
+                저희 회사는 <strong>책과 관련된 여러 서비스 및 이벤트를 운영</strong>하는 회사입니다. 
+                독서의 즐거움을 더 많은 분들과 나누고, 책을 통한 성장과 소통의 장을 만들어가고 있습니다.
+                <br><br>
+                포디파이브는 독자 여러분의 삶에 의미 있는 변화를 만들어가는 것을 목표로 하고 있습니다.
+                저희 회사에 많은 관심 부탁드립니다.
+            </div>
+
+            <div class="faq-section">
+                <h2><span class="icon">❓</span> 자주 묻는 질문</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="icon">Q.</span>
+                        왜 회사 이름이 '45'인가요?
+                    </div>
+                    <div class="faq-answer">
+                        <strong>45</strong>는 공동 창립자인 <strong>오이</strong>와 <strong>서준</strong>의 생일을 따서 만들었답니다. 
+                        두 창립자의 생일이 각각 4일과 5일이라서 이 숫자들을 조합하여 '45'라는 의미 있는 이름이 탄생했습니다.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="icon">Q.</span>
+                        'FordiFive'는 어떤 의미인가요?
+                    </div>
+                    <div class="faq-answer">
+                        영어 표기인 <strong>'FordiFive'</strong>는 저희 회사만의 독특한 상표입니다. 
+                        숫자 45를 영어로 표현하면서도 독창적인 브랜드 아이덴티티를 만들기 위해 선택한 이름입니다.
+                    </div>
+                </div>
+            </div>
+
+            <div class="signature">
+                감사합니다.<br>
+                <strong>- 홈페이지 제작자 오이 -</strong>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
-
-
-  </pre>
- </body>
- </html>

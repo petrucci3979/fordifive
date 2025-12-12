@@ -3,23 +3,335 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>로그인 / 회원가입</title>
+  <title>포디파이브 - 로그인</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Malgun Gothic', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      top: -250px;
+      right: -250px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    body::after {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      bottom: -150px;
+      left: -150px;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    .container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 450px;
+      width: 100%;
+      padding: 3rem;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 0.6s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo-section {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .logo-section h1 {
+      font-size: 2rem;
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+    }
+
+    .logo-section p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid #f0f0f0;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 0.8rem;
+      background: none;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #999;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .tab.active {
+      color: #667eea;
+    }
+
+    .tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .form-section {
+      display: none;
+    }
+
+    .form-section.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .input-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #555;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 0.5rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .logout-section {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 2px solid #f0f0f0;
+    }
+
+    .logout-section h3 {
+      font-size: 1.1rem;
+      color: #2c3e50;
+      margin-bottom: 1rem;
+    }
+
+    .btn-secondary {
+      background: #e0e0e0;
+      color: #555;
+    }
+
+    .btn-secondary:hover {
+      background: #d0d0d0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .status {
+      text-align: center;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .status.logged-in {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .status.logged-out {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .back-home {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .back-home a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .back-home a:hover {
+      color: #764ba2;
+    }
+
+    .error-message {
+      background: #f8d7da;
+      color: #721c24;
+      padding: 0.75rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .success-message {
+      background: #d4edda;
+      color: #155724;
+      padding: 0.75rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 2rem 1.5rem;
+      }
+
+      .logo-section h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h2>회원가입</h2>
-  <input id="signup-email" type="email" placeholder="이메일"><br>
-  <input id="signup-password" type="password" placeholder="비밀번호"><br>
-  <button onclick="signup()">회원가입</button>
+  <div class="container">
+    <div class="logo-section">
+      <h1>📚 포디파이브</h1>
+      <p>독서와 성장의 파트너</p>
+    </div>
 
-  <h2>로그인</h2>
-  <input id="login-email" type="email" placeholder="이메일"><br>
-  <input id="login-password" type="password" placeholder="비밀번호"><br>
-  <button onclick="login()">로그인</button>
+    <div id="status" class="status">로그인 상태 확인 중...</div>
 
-  <h2>로그아웃</h2>
-  <button onclick="logout()">로그아웃</button>
+    <div class="error-message" id="error-message"></div>
+    <div class="success-message" id="success-message"></div>
 
-  <h3 id="status">로그인 상태: 확인 중...</h3>
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('login')">로그인</button>
+      <button class="tab" onclick="switchTab('signup')">회원가입</button>
+    </div>
+
+    <!-- 로그인 폼 -->
+    <div id="login-form" class="form-section active">
+      <div class="input-group">
+        <label for="login-email">이메일</label>
+        <input id="login-email" type="email" placeholder="example@email.com">
+      </div>
+      <div class="input-group">
+        <label for="login-password">비밀번호</label>
+        <input id="login-password" type="password" placeholder="비밀번호를 입력하세요">
+      </div>
+      <button class="btn" onclick="login()">로그인</button>
+    </div>
+
+    <!-- 회원가입 폼 -->
+    <div id="signup-form" class="form-section">
+      <div class="input-group">
+        <label for="signup-email">이메일</label>
+        <input id="signup-email" type="email" placeholder="example@email.com">
+      </div>
+      <div class="input-group">
+        <label for="signup-password">비밀번호</label>
+        <input id="signup-password" type="password" placeholder="6자 이상 입력하세요">
+      </div>
+      <button class="btn" onclick="signup()">회원가입</button>
+    </div>
+
+    <!-- 로그아웃 섹션 -->
+    <div class="logout-section" id="logout-section" style="display: none;">
+      <h3>계정 관리</h3>
+      <button class="btn btn-secondary" onclick="logout()">로그아웃</button>
+    </div>
+
+    <div class="back-home">
+      <a href="index.html">← 홈으로 돌아가기</a>
+    </div>
+  </div>
 
   <!-- Firebase SDK v8 -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -36,21 +348,78 @@
       measurementId: "G-RV3BY75WM0"
     };
 
-    // Firebase 초기화
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
+
+    // 탭 전환
+    function switchTab(tab) {
+      const tabs = document.querySelectorAll('.tab');
+      const forms = document.querySelectorAll('.form-section');
+      
+      tabs.forEach(t => t.classList.remove('active'));
+      forms.forEach(f => f.classList.remove('active'));
+      
+      if (tab === 'login') {
+        tabs[0].classList.add('active');
+        document.getElementById('login-form').classList.add('active');
+      } else {
+        tabs[1].classList.add('active');
+        document.getElementById('signup-form').classList.add('active');
+      }
+      
+      hideMessages();
+    }
+
+    // 메시지 표시 함수
+    function showError(message) {
+      const errorDiv = document.getElementById('error-message');
+      errorDiv.textContent = message;
+      errorDiv.style.display = 'block';
+      setTimeout(() => errorDiv.style.display = 'none', 5000);
+    }
+
+    function showSuccess(message) {
+      const successDiv = document.getElementById('success-message');
+      successDiv.textContent = message;
+      successDiv.style.display = 'block';
+      setTimeout(() => successDiv.style.display = 'none', 3000);
+    }
+
+    function hideMessages() {
+      document.getElementById('error-message').style.display = 'none';
+      document.getElementById('success-message').style.display = 'none';
+    }
 
     // 회원가입
     function signup() {
       const email = document.getElementById("signup-email").value;
       const password = document.getElementById("signup-password").value;
 
+      if (!email || !password) {
+        showError("이메일과 비밀번호를 모두 입력해주세요.");
+        return;
+      }
+
       auth.createUserWithEmailAndPassword(email, password)
         .then(() => {
-          alert("회원가입 성공!");
-          window.location.href = "library2.html"; // 회원가입 후 바로 이동
+          showSuccess("회원가입 성공! 잠시 후 이동합니다...");
+          setTimeout(() => {
+            window.location.href = "library2.html";
+          }, 1500);
         })
-        .catch((error) => alert("회원가입 실패: " + error.message));
+        .catch((error) => {
+          let errorMessage = "회원가입 실패: ";
+          if (error.code === 'auth/email-already-in-use') {
+            errorMessage += "이미 사용 중인 이메일입니다.";
+          } else if (error.code === 'auth/invalid-email') {
+            errorMessage += "유효하지 않은 이메일 형식입니다.";
+          } else if (error.code === 'auth/weak-password') {
+            errorMessage += "비밀번호는 6자 이상이어야 합니다.";
+          } else {
+            errorMessage += error.message;
+          }
+          showError(errorMessage);
+        });
     }
 
     // 로그인
@@ -58,23 +427,72 @@
       const email = document.getElementById("login-email").value;
       const password = document.getElementById("login-password").value;
 
+      if (!email || !password) {
+        showError("이메일과 비밀번호를 모두 입력해주세요.");
+        return;
+      }
+
       auth.signInWithEmailAndPassword(email, password)
         .then(() => {
-          alert("로그인 성공!");
-          window.location.href = "library2.html"; // 로그인 후 이동
+          showSuccess("로그인 성공! 잠시 후 이동합니다...");
+          setTimeout(() => {
+            window.location.href = "library2.html";
+          }, 1500);
         })
-        .catch((error) => alert("로그인 실패: " + error.message));
+        .catch((error) => {
+          let errorMessage = "로그인 실패: ";
+          if (error.code === 'auth/user-not-found') {
+            errorMessage += "존재하지 않는 계정입니다.";
+          } else if (error.code === 'auth/wrong-password') {
+            errorMessage += "비밀번호가 올바르지 않습니다.";
+          } else if (error.code === 'auth/invalid-email') {
+            errorMessage += "유효하지 않은 이메일 형식입니다.";
+          } else {
+            errorMessage += error.message;
+          }
+          showError(errorMessage);
+        });
     }
 
     // 로그아웃
     function logout() {
-      auth.signOut().then(() => alert("로그아웃 완료"));
+      auth.signOut()
+        .then(() => {
+          showSuccess("로그아웃되었습니다.");
+        })
+        .catch((error) => {
+          showError("로그아웃 실패: " + error.message);
+        });
     }
 
     // 로그인 상태 표시
     auth.onAuthStateChanged((user) => {
       const status = document.getElementById("status");
-      status.innerText = user ? "로그인 상태: " + user.email : "로그인 상태: 로그아웃됨";
+      const logoutSection = document.getElementById("logout-section");
+      
+      if (user) {
+        status.className = "status logged-in";
+        status.textContent = "로그인됨: " + user.email;
+        logoutSection.style.display = "block";
+      } else {
+        status.className = "status logged-out";
+        status.textContent = "로그아웃 상태";
+        logoutSection.style.display = "none";
+      }
+    });
+
+    // Enter 키로 로그인/회원가입
+    document.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+        
+        if (loginForm.classList.contains('active')) {
+          login();
+        } else if (signupForm.classList.contains('active')) {
+          signup();
+        }
+      }
     });
   </script>
 </body>
